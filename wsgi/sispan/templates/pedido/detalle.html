@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 	{% block content %}
-		<a href="{% url 'index' %}">Listado</a> |	
+		<a href="{% url %}">Listado</a> |	
 		<hr>
 		
 		<h1>Detalle</h1>
 
-		<h3>nombre: {{ pedido.nombre|capfirst }}</h3>
-		<p>contacto: {{ pedido.email|capfirst }}</p>
+		<h3>nombre: {{ detalle.nombre|capfirst }}</h3>
+		<p>contacto: {{ detalle.email|capfirst }}</p>
 		<h4>Detalle:</h4>
 		<ul>
 			<li></li>
@@ -17,6 +17,6 @@
 		</ul>
 
 		<div>
-			<a href="{% url 'eliminar' pedido.id %}" class="btn btn-danger">Eliminar</a>
+			<a href="{% url 'eliminar' detalle.id %}" class="btn btn-danger">Cancelar Pedido</a>
 		</div>
 	{% endblock content %}

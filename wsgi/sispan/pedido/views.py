@@ -7,17 +7,11 @@ from .models import Pan, Detalle
 # HttpResponse para codigo html
 # render para renderizar una plantilla
 
-#def index(request):
-#   return HttpResponse('<p>In index view</p>')
-
 def index(request):
     detalles = Detalle.objects.exclude(id=0)    
     return render(request, 'pedido/listado.html', {
         'detalles': detalles,
     })
-
-#def detalle(request, id):
-#   return HttpResponse('<p>In pan_detail view with id {0}</p>'.format(id))
 
 def detalle(request, id):
     try:
@@ -27,22 +21,6 @@ def detalle(request, id):
     return render(request, 'pedido/detalle.html', {
         'detalle': detalle,
     })
-
-# def agregar(request):
-#     return render(request, 'pedido/agregar.html', {})
-
-# def guardar(request):
-#     pan = Pan()
-#     pan.nombre = request.POST['tipo']
-#     pan.valor = request.POST['valor']
-#     pan.descripcion = request.POST['descripcion']
-    
-#     pan.save()
-
-#     panes = Pan.objects.exclude(id=0)    
-#     return render(request, 'pedido/index.html', {
-#         'panes': panes,
-#     })
 
 def guardar_detalle(request):    
     detalle = Detalle()
