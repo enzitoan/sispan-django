@@ -28,7 +28,7 @@ sys.path.append(os.path.join(REPO_DIR, 'libs'))
 SECRET_KEY = 'ynur=j=(ggeppoeux5+j2i-*@u+43_#!isfv-cw%f*d9-*1&tz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
