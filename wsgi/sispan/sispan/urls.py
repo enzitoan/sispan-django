@@ -23,7 +23,4 @@ urlpatterns = [
 	url(r'^$', index, name="index"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sispan/', include('pedido.urls')),
-]
-
-if settings.DEBUG:
-	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
