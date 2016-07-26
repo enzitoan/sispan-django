@@ -10,18 +10,8 @@ class Pan(models.Model):
     valor = models.IntegerField()
     
 class Detalle(models.Model):
-
-    def next_weekday(dia_actual, weekday):
-        days_ahead = weekday - dia_actual.weekday()
-        if days_ahead <= 0: # Target day already happened this week
-            days_ahead += 7
-        return dia_actual + datetime.timedelta(days_ahead)
-
-    pedido = date.today
-    entrega = next_weekday(pedido, 1)
-
-    fecha_pedido = models.DateField(default=pedido)
-    fecha_entrega = models.DateField(default=entrega)
+    fecha_pedido = models.DateField(default=date.today())
+    fecha_entrega = models.DateField(default=date.today())
     cantidad_pita_integral = models.IntegerField(default=0)
     cantidad_pita_blanco = models.IntegerField(default=0)
     cantidad_amasado_integral = models.IntegerField(default=0) 
