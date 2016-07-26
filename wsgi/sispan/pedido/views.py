@@ -44,14 +44,14 @@ def guardar(request):
         'panes': panes,
     })
 
-def guardar_detalle(request):
+def guardar_detalle(request):    
     detalle = Detalle()
     detalle.nombre = request.POST['nombre']
     detalle.email = request.POST['email']
-    detalle.cantidad_pita_integral = request.POST['can_pi']
-    detalle.cantidad_pita_blanco = request.POST['can_pb']
-    detalle.cantidad_amasado_integral = request.POST['can_ai']
-    detalle.cantidad_amasado_blanco = request.POST['can_ab']
+    detalle.cantidad_pita_integral = request.POST['pan_pi']
+    detalle.cantidad_pita_blanco = request.POST['pan_pb']
+    detalle.cantidad_amasado_integral = request.POST['pan_ai']
+    detalle.cantidad_amasado_blanco = request.POST['pan_ab']
     detalle.save()
 
     response = """
