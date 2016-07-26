@@ -11,14 +11,14 @@ class Pan(models.Model):
     
 class Detalle(models.Model):
 
-    def next_weekday(d, weekday):
-        days_ahead = weekday - d.weekday()
+    def next_weekday(dia_actual, weekday):
+        days_ahead = weekday - dia_actual.weekday()
         if days_ahead <= 0: # Target day already happened this week
             days_ahead += 7
-        return d + datetime.timedelta(days_ahead)
+        return dia_actual + datetime.timedelta(days_ahead)
 
     pedido = date.today
-    entrega = next_weekday(date.today, 1)
+    entrega = next_weekday(pedido, 1)
 
     fecha_pedido = models.DateField(default=pedido)
     fecha_entrega = models.DateField(default=entrega)
