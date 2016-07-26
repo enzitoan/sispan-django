@@ -11,9 +11,9 @@ from .models import Pan, Detalle
 #   return HttpResponse('<p>In index view</p>')
 
 def index(request):
-    pedidos = Detalle.objects.exclude(id=0)    
+    detalles = Detalle.objects.exclude(id=0)    
     return render(request, 'pedido/listado.html', {
-        'pedidos': pedidos,
+        'detalles': detalles,
     })
 
 #def detalle(request, id):
@@ -21,11 +21,11 @@ def index(request):
 
 def detalle(request, id):
     try:
-        pedido = Detalle.objects.get(id=id)
-    except pedido.DoesNotExist:
-        raise Http404('El pan no existe')
+        detalle = Detalle.objects.get(id=id)
+    except detalle.DoesNotExist:
+        raise Http404('El detalle no existe')
     return render(request, 'pedido/detalle.html', {
-        'pedido': pedido,
+        'detalle': detalle,
     })
 
 # def agregar(request):
@@ -45,14 +45,14 @@ def detalle(request, id):
 #     })
 
 def guardar_detalle(request):    
-    pedido = Detalle()
-    pedido.nombre = request.POST['nombre']
-    pedido.email = request.POST['email']
-    pedido.cantidad_pita_integral = request.POST['pan_pi']
-    pedido.cantidad_pita_blanco = request.POST['pan_pb']
-    pedido.cantidad_amasado_integral = request.POST['pan_ai']
-    pedido.cantidad_amasado_blanco = request.POST['pan_ab']
-    pedido.save()
+    detalle = Detalle()
+    detalle.nombre = request.POST['nombre']
+    detalle.email = request.POST['email']
+    detalle.cantidad_pita_integral = request.POST['pan_pi']
+    detalle.cantidad_pita_blanco = request.POST['pan_pb']
+    detalle.cantidad_amasado_integral = request.POST['pan_ai']
+    detalle.cantidad_amasado_blanco = request.POST['pan_ab']
+    detalle.save()
 
     response = """
         <script type='text/javascript'>
@@ -65,16 +65,16 @@ def guardar_detalle(request):
     
 def eliminar(request, id):
     try:
-        pedido = Detalle.objects.get(id=id)
-    except pedido.DoesNotExist:
-        raise Http404('El pedido no existe')
+        detalle = Detalle.objects.get(id=id)
+    except detalle.DoesNotExist:
+        raise Http404('El detalle no existe')
 
-    pedido = Detalle.objects.get(id=id)
-    pedido.delete()
+    detalle = Detalle.objects.get(id=id)
+    detalle.delete()
 
-    pedidos = Detalle.objects.exclude(id=0)    
-    return render(request, 'pedido/index.html', {
-        'pedidos': pedidos,
+    detalles = Detalle.objects.exclude(id=0)    
+    return render(request, 'pedido/listado.html', {
+        'detalles': detalles,
     })
 
 def pedido(request):
