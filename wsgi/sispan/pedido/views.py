@@ -2,14 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 
-from .models import Pan, Detalle
+from .models import Detalle
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
 
 def index(request):
     detalles = Detalle.objects.exclude(id=0)    
-    return render(request, 'pedido/listado.html', {
+    return render(request, 'pedido/index.html', {
         'detalles': detalles,
     })
 
