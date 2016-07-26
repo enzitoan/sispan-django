@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+	
+	{% block content %}
+		<div class="row">
+			<div class="col-md-5">
+				<div class="page-header">
+					<h1>Tipos de Pan</h1>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Tipo de pan</th>
+								<th>Cantidad</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="col-md-10">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" class="chk-pedido" data-id-pan='1'>
+											Pita Blanco
+										</label>
+									</div>									
+								</td>
+								<td class="col-md-2">
+									<input type="number" id="txtPan1" name="pan_pb" class="form-control txt-pedido" min="1" required="required" disabled="true">								
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-10">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" class="chk-pedido" data-id-pan='2'>
+											Pita Integral
+										</label>
+									</div>									
+								</td>
+								<td class="col-md-2">
+									<input type="number" id="txtPan2" name="pan_pi" class="form-control txt-pedido" min="1" required="required" disabled="true">						
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-10">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" class="chk-pedido" data-id-pan='3'>
+											Amasado Blanco
+										</label>
+									</div>									
+								</td>
+								<td class="col-md-2">
+									<input type="number" id="txtPan3" name="pan_ab" class="form-control txt-pedido" min="1" required="required" disabled="true">						
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-10">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" class="chk-pedido" data-id-pan='4'>
+											Amasado Integral
+										</label>
+									</div>									
+								</td>
+								<td class="col-md-2">
+									<input type="number" id="txtPan4" name="pan_ai" class="form-control txt-pedido" min="1" required="required" disabled="true">						
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-5 col-md-offset-1">
+				<div class="page-header">
+					<h1>Pedido</h1>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<h3 class="text-right">Cantidad:</h3>						
+					</div>
+					<div class="col-md-7">
+						<h3 id="lblCantidad" class="text-right"></h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<h1 class="text-right">Total:</h1>
+					</div>
+					<div class="col-md-7">
+						<h1 id="lblTotal" class="text-right"></h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<hr>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="txtNombre" class="control-label">Nombre Completo:</label>
+							<input type="text" id="txtNombre" class="form-control" value="" required="required" title="" disabled="true">
+						</div>
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="txtCorreo" class="control-label">Correo Electrónico:</label>
+							<input type="text" id="txtCorreo" class="form-control" value="" required="required" title="" disabled="true">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-6">
+						<button type="button" id="btnIngresar" class="btn btn-primary btn-block" disabled="true">Ingresar</button>
+					</div>
+				</div>						
+			</div>
+		</div>
+	{% endblock content %}
