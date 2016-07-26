@@ -45,21 +45,21 @@ def guardar(request):
     })
 
 def guardar_detalle(request):
-    # detalle = Detalle()
-    # detalle.nombre = "Prueba"
-    # detalle.email = "prueba@prueba.cl"
-    # detalle.cantidad_pita_integral = request.POST['can_pi']
-    # detalle.cantidad_pita_blanco = request.POST['can_pb']
-    # detalle.cantidad_amasado_integral = request.POST['can_ai']
-    # detalle.cantidad_amasado_blanco = request.POST['can_ab']
+    detalle = Detalle()
+    detalle.nombre = request.POST['nombre']
+    detalle.email = request.POST['email']
+    detalle.cantidad_pita_integral = request.POST['can_pi']
+    detalle.cantidad_pita_blanco = request.POST['can_pb']
+    detalle.cantidad_amasado_integral = request.POST['can_ai']
+    detalle.cantidad_amasado_blanco = request.POST['can_ab']
+    detalle.save()
 
     response = """
         <script type='text/javascript'>
-            alert('ok');
-            document.location.href = '/sispan/';
+            alert('Pedido Recepcionado');
+            document.location.href = '/sispan/pedido.html';
         </script>
     """
-    # detalle.save()
 
     return HttpResponse(response)
     
