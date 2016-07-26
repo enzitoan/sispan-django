@@ -7,4 +7,4 @@ try:
 except IOError:
     pass
 
-from .wsgi import application
+from . import application
