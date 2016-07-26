@@ -6,12 +6,17 @@
 		
 		<h1>Detalle</h1>
 
-		<h3>{{ pan.nombre|capfirst }}</h3>
-		<p>{{ pan.valor }} en stock</p>
-		<h4>Descripción:</h4>
-		<p>{{ pan.descripcion }}</p>
+		<h3>nombre: {{ pedido.nombre|capfirst }}</h3>
+		<p>contacto: {{ pedido.email }}</p>
+		<h4>Detalle:</h4>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>		
+		</ul>
 
 		<div>
-			<a href="{% url 'eliminar' pan.id %}" class="btn btn-danger">Eliminar</a>
+			<a href="{% url 'eliminar' pedido.id %}" class="btn btn-danger">Eliminar</a>
 		</div>
 	{% endblock content %}

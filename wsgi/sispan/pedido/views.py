@@ -11,9 +11,9 @@ from .models import Pan, Detalle
 #   return HttpResponse('<p>In index view</p>')
 
 def index(request):
-    panes = Pan.objects.exclude(id=0)    
-    return render(request, 'pedido/index.html', {
-        'panes': panes,
+    pedidos = Detalle.objects.exclude(id=0)    
+    return render(request, 'pedido/listado.html', {
+        'pedidos': pedidos,
     })
 
 #def detalle(request, id):
@@ -21,61 +21,61 @@ def index(request):
 
 def detalle(request, id):
     try:
-        pan = Pan.objects.get(id=id)
-    except pan.DoesNotExist:
+        pedido = Detalle.objects.get(id=id)
+    except pedido.DoesNotExist:
         raise Http404('El pan no existe')
     return render(request, 'pedido/detalle.html', {
-        'pan': pan,
+        'pedido': pedido,
     })
 
-def agregar(request):
-    return render(request, 'pedido/agregar.html', {})
+# def agregar(request):
+#     return render(request, 'pedido/agregar.html', {})
 
-def guardar(request):
-    pan = Pan()
-    pan.nombre = request.POST['tipo']
-    pan.valor = request.POST['valor']
-    pan.descripcion = request.POST['descripcion']
+# def guardar(request):
+#     pan = Pan()
+#     pan.nombre = request.POST['tipo']
+#     pan.valor = request.POST['valor']
+#     pan.descripcion = request.POST['descripcion']
     
-    pan.save()
+#     pan.save()
 
-    panes = Pan.objects.exclude(id=0)    
-    return render(request, 'pedido/index.html', {
-        'panes': panes,
-    })
+#     panes = Pan.objects.exclude(id=0)    
+#     return render(request, 'pedido/index.html', {
+#         'panes': panes,
+#     })
 
 def guardar_detalle(request):    
-    detalle = Detalle()
-    detalle.nombre = request.POST['nombre']
-    detalle.email = request.POST['email']
-    detalle.cantidad_pita_integral = request.POST['pan_pi']
-    detalle.cantidad_pita_blanco = request.POST['pan_pb']
-    detalle.cantidad_amasado_integral = request.POST['pan_ai']
-    detalle.cantidad_amasado_blanco = request.POST['pan_ab']
-    detalle.save()
+    pedido = Detalle()
+    pedido.nombre = request.POST['nombre']
+    pedido.email = request.POST['email']
+    pedido.cantidad_pita_integral = request.POST['pan_pi']
+    pedido.cantidad_pita_blanco = request.POST['pan_pb']
+    pedido.cantidad_amasado_integral = request.POST['pan_ai']
+    pedido.cantidad_amasado_blanco = request.POST['pan_ab']
+    pedido.save()
 
     response = """
         <script type='text/javascript'>
             alert('Pedido Recepcionado');
-            document.location.href = '/sispan/pedido.html';
+            document.location.href = '/sispan/pedido/';
         </script>
     """
 
     return HttpResponse(response)
     
-def eliminar(request, id):
-    try:
-        pan = Pan.objects.get(id=id)
-    except pan.DoesNotExist:
-        raise Http404('El pan no existe')
+# def eliminar(request, id):
+#     try:
+#         pan = Pan.objects.get(id=id)
+#     except pan.DoesNotExist:
+#         raise Http404('El pan no existe')
 
-    pan = Pan.objects.get(id=id)
-    pan.delete()
+#     pan = Pan.objects.get(id=id)
+#     pan.delete()
 
-    panes = Pan.objects.exclude(id=0)    
-    return render(request, 'pedido/index.html', {
-        'panes': panes,
-    })
+#     panes = Pan.objects.exclude(id=0)    
+#     return render(request, 'pedido/index.html', {
+#         'panes': panes,
+#     })
 
 def pedido(request):
     return render(request, 'pedido/pedido.html', {})
