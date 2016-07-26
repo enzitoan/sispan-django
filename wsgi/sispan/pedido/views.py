@@ -52,15 +52,16 @@ def guardar_detalle(request):
     # detalle.cantidad_pita_blanco = request.POST['can_pb']
     # detalle.cantidad_amasado_integral = request.POST['can_ai']
     # detalle.cantidad_amasado_blanco = request.POST['can_ab']
-    # detalle.save()
 
-    res = """
+    response = """
         <script type='text/javascript'>
             alert('ok');
             document.location.href = '/sispan/';
         </script>
     """
-    return render(request, res, {})
+    # detalle.save()
+
+    return HttpResponse(response)
     
 def eliminar(request, id):
     try:
