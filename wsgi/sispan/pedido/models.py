@@ -9,6 +9,13 @@ class Pan(models.Model):
     valor = models.IntegerField()
     
 class Detalle(models.Model):
+
+    def next_weekday(d, weekday):
+        days_ahead = weekday - d.weekday()
+        if days_ahead <= 0: # Target day already happened this week
+            days_ahead += 7
+        return d + datetime.timedelta(days_ahead)
+        
     pedido = date.today
     entrega = next_weekday(date.today, 1)
 
@@ -20,12 +27,5 @@ class Detalle(models.Model):
     cantidad_amasado_blanco = models.IntegerField(default=0)
     nombre = models.CharField(max_length=120)
     email = models.EmailField()
-
-
-    def next_weekday(d, weekday):
-        days_ahead = weekday - d.weekday()
-        if days_ahead <= 0: # Target day already happened this week
-            days_ahead += 7
-        return d + datetime.timedelta(days_ahead)
 
 
