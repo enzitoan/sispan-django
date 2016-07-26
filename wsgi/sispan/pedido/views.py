@@ -44,25 +44,23 @@ def guardar(request):
         'panes': panes,
     })
 
-def guardar_detalle(request, id):
-    pass
-    # detalle = Detalle()
-    # detalle.fecha_pedido = "2016-06-15"
-    # detalle.fecha_entrega = "2016-06-16"
-    # detalle.cantidad_pita_integral = request.POST['can_pi']
-    # detalle.cantidad_pita_blanco = request.POST['can_pb']
-    # detalle.cantidad_amasado_integral = request.POST['can_ai']
-    # detalle.cantidad_amasado_blanco = request.POST['can_ab']
-    # detalle.persona = 1
-    # detalle.save()
+def guardar_detalle(request):
+    detalle = Detalle()
+    detalle.nombre = "Prueba"
+    detalle.email = "prueba@prueba.cl"
+    detalle.cantidad_pita_integral = request.POST['can_pi']
+    detalle.cantidad_pita_blanco = request.POST['can_pb']
+    detalle.cantidad_amasado_integral = request.POST['can_ai']
+    detalle.cantidad_amasado_blanco = request.POST['can_ab']
+    detalle.save()
 
-    # res = """
-    #     <sript type='text/javascript'>
-    #         alert('ok');
-    #         document.location.href = '/sispan/';
-    #     </script>
-    # """
-    # return render(request, res, {})
+    res = """
+        <sript type='text/javascript'>
+            alert('ok');
+            document.location.href = '/sispan/';
+        </script>
+    """
+    return render(request, res, {})
     
 def eliminar(request, id):
     try:

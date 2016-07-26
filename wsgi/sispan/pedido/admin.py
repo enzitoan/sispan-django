@@ -4,6 +4,8 @@ from .models import Detalle, Pan
 
 class DetalleAdmin(admin.ModelAdmin):
 	list_display = [
+		'nombre',
+		'email',
 		'fecha_pedido', 
 		'fecha_entrega', 
 		'cantidad_pita_integral',
