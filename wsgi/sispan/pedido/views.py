@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 
-from .models import Pan
+from .models import Pan, Detalle
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
