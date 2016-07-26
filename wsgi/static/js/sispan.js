@@ -72,12 +72,13 @@ app.calcularTotalPedido = function(){
 	return oDetalle;
 }
 
+/*
 app.insertarPedido = function(){
 	if (this.validarPedido()) {
 		alert('Enviar pedido');
 	}
 }
-
+*/
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
 		$('#txtPan' + $(checkbox).data('id-pan')).val(1);
@@ -120,7 +121,10 @@ $(document).ready(function() {
 		app.eventTxtChange();
 	});
 
+	/*
 	$('#btnIngresar').click(function(event) {
 		app.insertarPedido();
 	});
+	*/
+	
 });
