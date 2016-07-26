@@ -63,19 +63,19 @@ def guardar_detalle(request):
 
     return HttpResponse(response)
     
-# def eliminar(request, id):
-#     try:
-#         pan = Pan.objects.get(id=id)
-#     except pan.DoesNotExist:
-#         raise Http404('El pan no existe')
+def eliminar(request, id):
+    try:
+        pedido = Detalle.objects.get(id=id)
+    except pedido.DoesNotExist:
+        raise Http404('El pedido no existe')
 
-#     pan = Pan.objects.get(id=id)
-#     pan.delete()
+    pedido = Detalle.objects.get(id=id)
+    pedido.delete()
 
-#     panes = Pan.objects.exclude(id=0)    
-#     return render(request, 'pedido/index.html', {
-#         'panes': panes,
-#     })
+    pedidos = Detalle.objects.exclude(id=0)    
+    return render(request, 'pedido/index.html', {
+        'pedidos': pedidos,
+    })
 
 def pedido(request):
     return render(request, 'pedido/pedido.html', {})
