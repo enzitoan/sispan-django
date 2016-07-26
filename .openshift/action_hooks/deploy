@@ -5,6 +5,6 @@ cd ${OPENSHIFT_REPO_DIR}wsgi/sispan
 echo "Executing 'python manage.py migrate'"
 python manage.py migrate
 #echo "Executing 'python manage.py collectstatic --noinput'"
-#python manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 
 ########################### end of file
