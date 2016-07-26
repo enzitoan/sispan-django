@@ -8,9 +8,9 @@ from .models import Detalle
 # render para renderizar una plantilla
 
 def index(request):
-    detalles = Detalle.objects.exclude(id=0)    
+    pedidos = Detalle.objects.exclude(id=0)    
     return render(request, 'pedido/index.html', {
-        'detalles': detalles,
+        'pedidos': pedidos,
     })
 
 def detalle(request, id):
@@ -50,9 +50,9 @@ def eliminar(request, id):
     detalle = Detalle.objects.get(id=id)
     detalle.delete()
 
-    detalles = Detalle.objects.exclude(id=0)    
+    pedidos = Detalle.objects.exclude(id=0)    
     return render(request, 'pedido/listado.html', {
-        'detalles': detalles,
+        'pedidos': pedidos,
     })
 
 def pedido(request):
