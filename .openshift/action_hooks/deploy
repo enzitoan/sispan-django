@@ -2,5 +2,5 @@
 
 source $VIRTUAL_ENV/bin/activate
 
-# Executing collectstatic (organize static files)
+# Executing collectstatic (organize static files) test
 python "$OPENSHIFT_REPO_DIR"wsgi/sispan/manage.py collectstatic --noinput
