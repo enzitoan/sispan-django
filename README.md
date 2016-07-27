@@ -75,3 +75,4 @@ Use `rhc ssh` to log into python gear and run this command:
 You should be now able to login at:
 
 	http://django-$yournamespace.rhcloud.com/admin/
+=======
