@@ -1,4 +1,4 @@
 from django.shortcuts import render, redirect
 
 def index(request):
-    return redirect('pedido:index')
+    return render(request, 'index.html', {})

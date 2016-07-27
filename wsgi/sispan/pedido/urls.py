@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 
-from .views import index, pedido, pedido_listado, pedido_editar, pedido_eliminar
+from .views import *
 
 urlpatterns = [
 	url(r'^$', index, name='index'),

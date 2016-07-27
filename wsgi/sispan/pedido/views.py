@@ -11,13 +11,16 @@ from .models import Detalle
 # HttpResponse para codigo html
 # render para renderizar una plantilla
 
-def index(request):
-    return render(request, 'pedido/index.html')
+def index(request):    
+    return render(request, 'pedido/index.html')    
 
-def pedido(request):    
+def pedido(request): 
     if request.method == 'POST':
+        print ("request formulario")
         form = DetalleForm(request.POST)
+        print ("valida form")
         if form.is_valid():
+            print ("guardar form")
             form.save()
         return redirect('pedido:pedido_listado')
     else:
@@ -25,10 +28,12 @@ def pedido(request):
     return render(request, 'pedido/formulario.html', {'form':form})
 
 def pedido_listado(request):
-    pedidos = Detalle.objects.exclude(id=0)    
-    return render(request, 'pedido/listado.html', {
-        'pedidos': pedidos,
-    })
+    pedidos = Detalle.objects.all().order_by('id') 
+    context = {'pedidos': pedidos}
+    for pedido in pedidos:
+        print pedido
+
+    return render(request, 'pedido/listado.html', context)
 
 def pedido_editar(request, id):
     pedido = Detalle.objects.get(id=id)

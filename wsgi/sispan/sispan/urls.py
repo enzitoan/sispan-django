@@ -20,7 +20,7 @@ from django.contrib import admin
 from .views import index
 
 urlpatterns = [
-	url(r'^$', index, name="index"),
+	url(r'^$', index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^sispan/', include('pedido.urls')),
+    url(r'^sispan/', include('pedido.urls', namespace='pedido')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
