@@ -13,13 +13,30 @@ def index(request):
         'pedidos': pedidos,
     })
 
+def pedido(request):
+    return render(request, 'pedido/pedido.html', {})
+
 def detalle(request, id):
     try:
         detalle = Detalle.objects.get(id=id)
-    except detalle.DoesNotExist:
+    except Detalle.DoesNotExist:
         raise Http404('El detalle no existe')
     return render(request, 'pedido/detalle.html', {
         'detalle': detalle,
+    })
+    
+def eliminar(request, id):
+    try:
+        detalle = Detalle.objects.get(id=id)
+    except Detalle.DoesNotExist:
+        raise Http404('El detalle no existe')
+
+    detalle = Detalle.objects.get(id=id)
+    detalle.delete()
+
+    pedidos = Detalle.objects.exclude(id=0)    
+    return render(request, 'pedido/listado.html', {
+        'pedidos': pedidos,
     })
 
 def guardar_detalle(request):    
@@ -40,21 +57,5 @@ def guardar_detalle(request):
     """
 
     return HttpResponse(response)
-    
-def eliminar(request, id):
-    try:
-        detalle = Detalle.objects.get(id=id)
-    except detalle.DoesNotExist:
-        raise Http404('El detalle no existe')
 
-    detalle = Detalle.objects.get(id=id)
-    detalle.delete()
-
-    pedidos = Detalle.objects.exclude(id=0)    
-    return render(request, 'pedido/listado.html', {
-        'pedidos': pedidos,
-    })
-
-def pedido(request):
-    return render(request, 'pedido/pedido.html', {})
 

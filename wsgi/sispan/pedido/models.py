@@ -1,6 +1,5 @@
 from django.db import models
-from datetime import date
-import datetime
+from django.utils import timezone
 
 # Create your models here.
 class Pan(models.Model):
@@ -10,8 +9,8 @@ class Pan(models.Model):
     valor = models.IntegerField()
     
 class Detalle(models.Model):
-    fecha_pedido = models.DateField(default=date.today())
-    fecha_entrega = models.DateField(default=date.today())
+    fecha_pedido = models.DateField(default=timezone.now)
+    fecha_entrega = models.DateField(default=timezone.now)
     cantidad_pita_integral = models.IntegerField(default=0)
     cantidad_pita_blanco = models.IntegerField(default=0)
     cantidad_amasado_integral = models.IntegerField(default=0) 
