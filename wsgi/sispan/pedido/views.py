@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 
 from .models import Detalle
+
+from .forms import DetalleForm
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
@@ -41,25 +43,46 @@ def eliminar(request, id):
 
 def guardar_detalle(request): 
 
-    for item in request.POST:
-        print (item)
+    if request.method == 'POST':
+        form = DetalleForm(request.POST)
 
-    detalle = Detalle()
-    detalle.nombre = request.POST['nombre']
-    detalle.email = request.POST['email']
-    detalle.cantidad_pita_integral = request.POST['pan_pi']
-    detalle.cantidad_pita_blanco = request.POST['pan_pb']
-    detalle.cantidad_amasado_integral = request.POST['pan_ai']
-    detalle.cantidad_amasado_blanco = request.POST['pan_ab']
-    detalle.save()
+        if form.is_valid():
+            form.save()
+            response = """
+                <script type='text/javascript'>
+                    alert('Pedido Recepcionado');
+                </script>
+            """
+        else:
+            response = """
+                <script type='text/javascript'>
+                    alert('Error');
+                </script>
+            """            
 
-    response = """
-        <script type='text/javascript'>
-            alert('Pedido Recepcionado');
-            document.location.href = '/sispan/pedido/';
-        </script>
-    """
+        return redirect('sispan:pedido')
+
+    else:
+        form = DetalleForm()
 
     return HttpResponse(response)
+
+    # detalle = Detalle()
+    # detalle.nombre = request.POST['nombre']        
+    # detalle.email = request.POST['email']
+    # detalle.cantidad_pita_integral = request.POST['pan_pi']
+    # detalle.cantidad_pita_blanco = request.POST['pan_pb']
+    # detalle.cantidad_amasado_integral = request.POST['pan_ai']
+    # detalle.cantidad_amasado_blanco = request.POST['pan_ab']
+    # detalle.save()
+
+    # response = """
+    #     <script type='text/javascript'>
+    #         alert('Pedido Recepcionado');
+    #         document.location.href = '/sispan/pedido/';
+    #     </script>
+    # """
+
+    # return HttpResponse(response)
 
 
