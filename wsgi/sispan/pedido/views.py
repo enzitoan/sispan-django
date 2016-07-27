@@ -47,25 +47,14 @@ def guardar_detalle(request):
         detalle = DetalleForm(request.POST)
 
         if form.is_valid():
-            detalle.save()
-            response = """
-                <script type='text/javascript'>
-                    alert('Pedido Recepcionado');
-                </script>
-            """
-        else:
-            response = """
-                <script type='text/javascript'>
-                    alert('Error');
-                </script>
-            """            
+            detalle.save()    
 
         return redirect('pedido:pedido')
 
     else:
         detalle = DetalleForm()
 
-    return HttpResponse(response)
+    return render(request, 'pedido/success.html', {})
 
     # detalle = Detalle()
     # detalle.nombre = request.POST['nombre']        
