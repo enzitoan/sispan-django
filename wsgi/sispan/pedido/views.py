@@ -39,7 +39,11 @@ def eliminar(request, id):
         'pedidos': pedidos,
     })
 
-def guardar_detalle(request):    
+def guardar_detalle(request): 
+
+    for item in request.POST:
+        print (item)
+
     detalle = Detalle()
     detalle.nombre = request.POST['nombre']
     detalle.email = request.POST['email']
