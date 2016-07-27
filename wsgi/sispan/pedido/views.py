@@ -31,7 +31,7 @@ def pedido_listado(request):
     })
 
 def pedido_editar(request, id):
-    pedido = Mascota.objects.get(id=id)
+    pedido = Detalle.objects.get(id=id)
     if request.method == 'GET':
         form = DetalleForm(instance=pedido)
     else:
