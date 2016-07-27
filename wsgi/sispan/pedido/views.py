@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 
-from .models import Detalle
+from django.core import serializers
 
 from .forms import DetalleForm
+from .models import Detalle
+
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
@@ -42,36 +44,14 @@ def eliminar(request, id):
     })
 
 def guardar_detalle(request): 
-
     if request.method == 'POST':
-        detalle = DetalleForm(request.POST)
-
+        form = DetalleForm(request.POST)
         if form.is_valid():
-            detalle.save()    
-
-        return redirect('pedido:pedido')
-
+            form.save()
+        return redirect('pedido:index')
     else:
-        detalle = DetalleForm()
+        form = DetalleForm()
 
-    return render(request, 'pedido/success.html', {})
-
-    # detalle = Detalle()
-    # detalle.nombre = request.POST['nombre']        
-    # detalle.email = request.POST['email']
-    # detalle.cantidad_pita_integral = request.POST['pan_pi']
-    # detalle.cantidad_pita_blanco = request.POST['pan_pb']
-    # detalle.cantidad_amasado_integral = request.POST['pan_ai']
-    # detalle.cantidad_amasado_blanco = request.POST['pan_ab']
-    # detalle.save()
-
-    # response = """
-    #     <script type='text/javascript'>
-    #         alert('Pedido Recepcionado');
-    #         document.location.href = '/sispan/pedido/';
-    #     </script>
-    # """
-
-    # return HttpResponse(response)
+    return render(request, 'pedido/pedido_form.html', {'form':form})
 
 
