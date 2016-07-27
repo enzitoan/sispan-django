@@ -60,7 +60,7 @@ def guardar_detalle(request):
                 </script>
             """            
 
-        return redirect('sispan:pedido')
+        return redirect('pedido:pedido')
 
     else:
         detalle = DetalleForm()
