@@ -4,7 +4,7 @@
 		<form method="post">
 			{% csrf_token %}
 			<h3>¿Desea eliminar el pedido de {{ object.nombre }}?</h3>	
-			<a class= "btn btn-default" href="{% url 'pedido:mascota_listado' %}">Cancelar</a>
+			<a class= "btn btn-default" href="{% url 'pedido:pedido_listado' %}">Cancelar</a>
 			<button class="btn btn-danger" type="submit">Sí, eliminar</button>
 		</form>
 	{% endblock%}
