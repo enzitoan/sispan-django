@@ -1,27 +1,4 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 	{% block content %}
-		<a href="{% url 'pedido' %}">Nuevo Pedido</a> | 
-		<hr>
-		<div class="col-md-4">
-			<legend>Listado de Pedidos</legend>
-			<table class="table table-responsive">
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Email</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for pedido in pedidos %}
-				<tr>
-					<td>{{ pedido.nombre|capfirst }}</td>
-					<td>{{ pedido.email|capfirst }}</td>
-					<td><a href="{% url 'detalle' pedido.id %}">Ver</a></td>
-				</tr>
-				{% endfor %}
-			</tbody>
-			</table>
-		</div>	
-	{% endblock content %}
+		<h1>SISPAN</h1>
+	{% endblock%}

@@ -12,46 +12,43 @@ from .models import Detalle
 # render para renderizar una plantilla
 
 def index(request):
-    pedidos = Detalle.objects.exclude(id=0)    
-    return render(request, 'pedido/index.html', {
-        'pedidos': pedidos,
-    })
+    return render(request, 'pedido/index.html')
 
-def pedido(request):
-    return render(request, 'pedido/pedido.html', {})
+def pedido(request):    
+    if request.method == 'POST':
+        form = DetalleForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('pedido:pedido_listado')
+    else:
+        form = DetalleForm()
+    return render(request, 'pedido/formulario.html', {'form':form})
 
-def detalle(request, id):
-    try:
-        detalle = Detalle.objects.get(id=id)
-    except Detalle.DoesNotExist:
-        raise Http404('El detalle no existe')
-    return render(request, 'pedido/detalle.html', {
-        'detalle': detalle,
-    })
-    
-def eliminar(request, id):
-    try:
-        detalle = Detalle.objects.get(id=id)
-    except Detalle.DoesNotExist:
-        raise Http404('El detalle no existe')
-
-    detalle = Detalle.objects.get(id=id)
-    detalle.delete()
-
+def pedido_listado(request):
     pedidos = Detalle.objects.exclude(id=0)    
     return render(request, 'pedido/listado.html', {
         'pedidos': pedidos,
     })
 
-def guardar_detalle(request): 
-    if request.method == 'POST':
-        form = DetalleForm(request.POST)
+def pedido_editar(request, id):
+    pedido = Mascota.objects.get(id=id)
+    if request.method == 'GET':
+        form = DetalleForm(instance=pedido)
+    else:
+        form = DetalleForm(request.POST, instance=pedido)
         if form.is_valid():
             form.save()
-        return redirect('pedido:index')
-    else:
-        form = DetalleForm()
+        return redirect('pedido:pedido_listado')
+    return render(request, 'pedido/formulario.html', {'form':form})
 
-    return render(request, 'pedido/pedido_form.html', {'form':form})
+def pedido_eliminar(request, id):
+    pedido = Detalle.objects.get(id=id)
+    if request.method == 'POST':
+        pedido.delete()
+        return redirect('pedido:pedido_listado')
+    return render(request, 'pedido/eliminar.html', {'pedido':pedido})
+
+
+
 
 

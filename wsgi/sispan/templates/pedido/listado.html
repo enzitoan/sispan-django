@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+	{% block content %}
+	<h1>SISPAN</h1>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Nombre</td>
+				<td>Email</td>
+			</tr>		
+		</thead>
+		<tbody>
+			{% if object_list %}
+			{% for pedido in object_list %}
+			<tr>
+				<td>{{ pedido.id }}</td>
+				<td>{{ pedido.nombre }}</td>
+				<td>{{ pedido.email }}</td>
+				<td>
+					<a class="btn btn-primary" href="{% url 'pedido:pedido_editar' pedido.id %}">Editar</a>
+					<a class="btn btn-danger" href="{% url 'pedido:pedido_eliminar' pedido.id %}">Eliminar</a>
+				</td>
+			</tr>
+			{% endfor %}
+			
+			{% else %}
+			<h1>No hay registros de pedidos</h1>
+			{% endif %}
+		</tbody>
+	</table> 
+
+	{% endblock%}
+
