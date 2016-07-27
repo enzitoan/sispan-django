@@ -31,7 +31,7 @@ def pedido_listado(request):
     pedidos = Detalle.objects.all().order_by('id') 
     context = {'pedidos': pedidos}
     for pedido in pedidos:
-        print pedido
+        print (pedido)
 
     return render(request, 'pedido/listado.html', context)
 
