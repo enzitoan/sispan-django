@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 
+from .forms import DetalleForm
 from .models import Detalle
 
-from .forms import DetalleForm
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
@@ -44,10 +44,10 @@ def eliminar(request, id):
 def guardar_detalle(request): 
 
     if request.method == 'POST':
-        form = DetalleForm(request.POST)
+        detalle = DetalleForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            detalle.save()
             response = """
                 <script type='text/javascript'>
                     alert('Pedido Recepcionado');
@@ -63,7 +63,7 @@ def guardar_detalle(request):
         return redirect('sispan:pedido')
 
     else:
-        form = DetalleForm()
+        detalle = DetalleForm()
 
     return HttpResponse(response)
 
