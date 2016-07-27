@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 
-from .forms import DetalleForm
 from .models import Detalle
 
+from .forms import DetalleForm
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
