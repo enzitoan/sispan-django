@@ -38,7 +38,7 @@ from socket import gethostname
 ALLOWED_HOSTS = [
     gethostname(), # For internal OpenShift load balancer security purposes.
     os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
-    #'127.0.0.1',
+    '127.0.0.1',
     #'example.com', # First DNS alias (set up in the app)
     #'www.example.com', # Second DNS alias (set up in the app)
 ]
@@ -116,4 +116,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')

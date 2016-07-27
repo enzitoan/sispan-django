@@ -8,26 +8,72 @@ class DetalleForm(forms.ModelForm):
 		model = Detalle
 
 		fields = [
-		    'cantidad_pita_integral',
 		    'cantidad_pita_blanco',
-		    'cantidad_amasado_integral',
+		    'cantidad_pita_integral',
 		    'cantidad_amasado_blanco',
+		    'cantidad_amasado_integral',
 		    'nombre',
 		    'email',
 		]
 		labels = {
-		    'cantidad_pita_integral': 'Pita Integral',
 		    'cantidad_pita_blanco': 'Pita Blanco',
-		    'cantidad_amasado_integral': 'Amasado Integral',
+		    'cantidad_pita_integral': 'Pita Integral',
 		    'cantidad_amasado_blanco': 'Amasado Blanco',
+		    'cantidad_amasado_integral': 'Amasado Integral',
 		    'nombre': 'Nombre Completo',
 		    'email': 'E-Mail',		
 		}
 		widgets = {
-			'cantidad_pita_integral': forms.TextInput(attrs={'class':'form-control txt-pedido'}),
-			'cantidad_pita_blanco': forms.TextInput(attrs={'class':'form-control txt-pedido'}),
-			'cantidad_amasado_integral': forms.TextInput(attrs={'class':'form-control txt-pedido'}),
-			'cantidad_amasado_blanco': forms.TextInput(attrs={'class':'form-control txt-pedido'}),
-			'nombre': forms.TextInput(attrs={'class':'form-control'}),
-			'email': forms.TextInput(attrs={'class':'form-control'}),
+			'cantidad_pita_blanco': forms.NumberInput(
+				attrs={
+					'id': 'txtPan1',
+					'class':'form-control txt-pedido',
+					'min': 1,
+					'required': True,
+					'disabled': True,
+				}
+			),
+			'cantidad_pita_integral': forms.NumberInput(
+				attrs={
+					'id': 'txtPan2',
+					'class':'form-control txt-pedido',
+					'min': 1,
+					'required': True,
+					'disabled': True,
+				}
+			),
+			'cantidad_amasado_blanco': forms.NumberInput(
+				attrs={
+					'id': 'txtPan3',
+					'class':'form-control txt-pedido',
+					'min': 1,
+					'required': True,
+					'disabled': True,
+				}
+			),
+			'cantidad_amasado_integral': forms.NumberInput(
+				attrs={
+					'id': 'txtPan4', 
+					'class':'form-control txt-pedido',
+					'min': 1,
+					'required': True,
+					'disabled': True,
+				}
+			),
+			'nombre': forms.TextInput(
+				attrs={
+					'id': 'txtNombre',
+					'class':'form-control',
+					'required': True,					
+					'disabled': True,
+				}
+			),
+			'email': forms.EmailInput(
+				attrs={
+					'id': 'txtCorreo',
+					'class':'form-control',
+					'required': True,
+					'disabled': True,
+				}
+			),
 		}
