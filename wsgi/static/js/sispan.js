@@ -121,6 +121,10 @@ $(document).ready(function() {
 		app.eventTxtChange();
 	});
 
+	$('#pedido_form').submit(function(){
+    	$("#pedido_form :disabled").removeAttr('disabled');
+	});
+
 	/*
 	$('#btnIngresar').click(function(event) {
 		app.insertarPedido();
