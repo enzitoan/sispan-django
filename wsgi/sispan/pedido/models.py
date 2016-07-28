@@ -1,6 +1,14 @@
 from django.db import models
 from django.utils import timezone
 
+import datetime
+
+def calcula_siguente_martes():
+    dia = datetime.date.today()
+    while dia.weekday() != 1:           
+        dia += datetime.timedelta(1)
+    return dia
+
 # Create your models here.
 class Pan(models.Model):
     codigo = models.CharField(max_length=5)
@@ -10,7 +18,7 @@ class Pan(models.Model):
     
 class Detalle(models.Model):
     fecha_pedido = models.DateField(default=timezone.now)
-    fecha_entrega = models.DateField(default=timezone.now)
+    fecha_entrega = models.DateField(default=calcula_siguente_martes())
     cantidad_pita_integral = models.IntegerField(default=0)
     cantidad_pita_blanco = models.IntegerField(default=0)
     cantidad_amasado_integral = models.IntegerField(default=0) 
