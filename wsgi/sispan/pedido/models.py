@@ -15,6 +15,9 @@ class Pan(models.Model):
     nombre = models.CharField(max_length=70)
     descripcion = models.TextField(max_length=100)
     valor = models.IntegerField()
+
+    def __str__(self):
+        return '[%s]' % (self.nombre)
     
 class Detalle(models.Model):
     fecha_pedido = models.DateField(default=timezone.now)
@@ -26,4 +29,6 @@ class Detalle(models.Model):
     nombre = models.CharField(max_length=120)
     email = models.EmailField()
 
+    def __str__(self):
+        return '[%s] %s' % ('Pedido', self.nombre)
 
