@@ -2,9 +2,11 @@
 #this one is the deploy hook .openshift/action_hooks/deploy
 source ${OPENSHIFT_HOMEDIR}python/virtenv/venv/bin/activate
 cd ${OPENSHIFT_REPO_DIR}wsgi/sispan
+echo "Executing 'python manage.py makemigrations'"
+python manage.py makemigrations
 echo "Executing 'python manage.py migrate'"
 python manage.py migrate
-#echo "Executing 'python manage.py collectstatic --noinput'"
+echo "Executing 'python manage.py collectstatic --noinput'"
 python manage.py collectstatic --noinput
 
 ########################### end of file
