@@ -7,6 +7,10 @@ from django.core import serializers
 from .forms import DetalleForm
 from .models import Detalle
 
+import logging
+
+# Get an instance of a logger
+log = logging.getLogger(__name__)
 
 # HttpResponse para codigo html
 # render para renderizar una plantilla
@@ -16,11 +20,11 @@ def index(request):
 
 def pedido(request): 
     if request.method == 'POST':
-        print ("request formulario")
+        log.info("request formulario")
         form = DetalleForm(request.POST)
-        print ("valida formulario")
+        log.info("valida formulario")
         if form.is_valid():
-            print ("guardar formulario")
+            log.info("guardar formulario")
             form.save()
         return redirect('pedido:index')
     else:
