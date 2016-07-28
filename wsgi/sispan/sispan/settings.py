@@ -90,16 +90,14 @@ WSGI_APPLICATION = 'sispan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-import urlparse
-db_url = urlparse.urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
 
 DATABASES = {'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': os.environ['OPENSHIFT_APP_NAME'],
-    'USER': db_url.username,
-    'PASSWORD': db_url.password,
-    'HOST': db_url.hostname,
-    'PORT': db_url.port,
+    'USER': admindjzij3i,
+    'PASSWORD': KvTvVBx6L78S,
+    'HOST': os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
+    'PORT': os.environ['OPENSHIFT_POSTGRESQL_DB_PORT'],
     }
 }
 
