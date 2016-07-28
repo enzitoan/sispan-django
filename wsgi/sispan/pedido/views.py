@@ -29,14 +29,7 @@ def pedido(request):
 
 def pedido_listado(request):
     # pedidos = Detalle.objects.all().order_by('id') 
-    pedidos = Detalle.objects.raw("""
-            SELECT 
-                *
-            FROM
-                pedido_detalle
-            WHERE
-                id > 2
-        """)
+    pedidos = Detalle.objects.all()
     context = {'pedidos': pedidos}
     for pedido in pedidos:
         print (pedido)
