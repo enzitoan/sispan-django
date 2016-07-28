@@ -74,19 +74,12 @@ app.calcularTotalPedido = function(){
 	return oDetalle;
 }
 
-/*
-app.insertarPedido = function(){
-	if (this.validarPedido()) {
-		alert('Enviar pedido');
-	}
-}
-*/
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
 		$('#txtPan' + $(checkbox).data('id-pan')).val(1);
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
 	} else {
-		$('#txtPan' + $(checkbox).data('id-pan')).val('');
+		$('#txtPan' + $(checkbox).data('id-pan')).val(0);
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
 	}
 	this.eventTxtChange();
@@ -126,11 +119,5 @@ $(document).ready(function() {
 	$('#pedido_form').submit(function(){
     	$("#pedido_form :disabled").removeAttr('disabled');
 	});
-
-	/*
-	$('#btnIngresar').click(function(event) {
-		app.insertarPedido();
-	});
-	*/
 	
 });
