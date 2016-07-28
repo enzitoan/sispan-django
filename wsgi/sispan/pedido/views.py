@@ -18,11 +18,11 @@ def pedido(request):
     if request.method == 'POST':
         print ("request formulario")
         form = DetalleForm(request.POST)
-        print ("valida form")
+        print ("valida formulario")
         if form.is_valid():
-            print ("guardar form")
+            print ("guardar formulario")
             form.save()
-        return redirect('pedido:pedido_listado')
+        return redirect('pedido:index')
     else:
         form = DetalleForm()
     return render(request, 'pedido/formulario.html', {'form':form})
@@ -30,9 +30,6 @@ def pedido(request):
 def pedido_listado(request):
     pedidos = Detalle.objects.all().order_by('id') 
     context = {'pedidos': pedidos}
-    for pedido in pedidos:
-        print (pedido)
-
     return render(request, 'pedido/listado.html', context)
 
 def pedido_editar(request, id):
