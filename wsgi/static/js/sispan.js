@@ -53,9 +53,11 @@ app.calcularTotalPedido = function(){
 	};
 
 	$.each($('.txt-pedido'), function(index, val) {
-		if ($(this).prop('disabled') == false) {
-			aTotPanes[index] = parseInt($(this).val());
-		}		
+		cantidad = 0;
+		if ($(this).val() != ''){
+			cantidad = $(this).val(); 
+		}
+		aTotPanes[index] = parseInt(cantidad);		
 	});
 
 	var total = 0;
