@@ -34,6 +34,8 @@ def pedido_listado(request):
                 *
             FROM
                 pedido_detalle
+            WHERE
+                id > 2
         """)
     context = {'pedidos': pedidos}
     for pedido in pedidos:
