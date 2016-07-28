@@ -28,7 +28,13 @@ def pedido(request):
     return render(request, 'pedido/formulario.html', {'form':form})
 
 def pedido_listado(request):
-    pedidos = Detalle.objects.all().order_by('id') 
+    # pedidos = Detalle.objects.all().order_by('id') 
+    pedidos = Detalle.objects.raw("""
+            SELECT 
+                *
+            FROM
+                pedido_detalle
+        """)
     context = {'pedidos': pedidos}
     for pedido in pedidos:
         print (pedido)
