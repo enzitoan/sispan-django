@@ -12,9 +12,6 @@ import logging
 # Get an instance of a logger
 log = logging.getLogger(__name__)
 
-# HttpResponse para codigo html
-# render para renderizar una plantilla
-
 def index(request):    
     return render(request, 'pedido/index.html')    
 
