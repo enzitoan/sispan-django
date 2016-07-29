@@ -13,6 +13,9 @@ app.SISTEMA = {
 	} 
 }
 
+app.aTotPanes = [];
+app.oDetalle = {};
+
 app.obtenerInformacionApp = function() {
 	console.log('Version: ' + this.VERSION);
 	console.log('Autor  : ' + this.AUTOR);
@@ -46,8 +49,7 @@ app.limpiarPedido = function() {
 }
 
 app.calcularTotalPedido = function(){
-	var aTotPanes = [];
-	var oDetalle = {
+	app.oDetalle = {
 		'cantidad': 0,
 		'total': 0
 	};
@@ -71,6 +73,9 @@ app.calcularTotalPedido = function(){
 	oDetalle.cantidad = total;
 	oDetalle.total = parseInt(total) * this.SISTEMA.valorPan;
 
+	$('#lblCantidad').text(oDetalle.cantidad);
+	$('#lblTotal').text('$ ' + oDetalle.total);
+
 	return oDetalle;
 }
 
@@ -86,21 +91,18 @@ app.eventChkClick = function(checkbox) {
 }
 
 app.eventTxtChange = function() {
-	var oPedido = this.calcularTotalPedido();
-	$('#lblCantidad').text(oPedido.cantidad);
-	$('#lblTotal').text('$ ' + oPedido.total);
 
 	if (oPedido.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
-		$('#btnIngresar').prop('disabled', false);
+		if ($('#txtNombre').val() != '' && $('#txtCorreo').val() != '') {
+			$('#btnIngresar').prop('disabled', false);
+		}
+		
 	} else {
 		$('#txtNombre').prop('disabled', true);
 		$('#txtCorreo').prop('disabled', true);
 		$('#btnIngresar').prop('disabled', true);
-
-		$('#txtNombre').val('');
-		$('#txtCorreo').val('');
 	}
 }
 
