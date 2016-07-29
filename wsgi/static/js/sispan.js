@@ -85,12 +85,12 @@ app.calcularTotalPedido = function(){
 
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
-		if('{{ edit }}' != 'S') {
+		if($('#isEdit').val() != 'S') {
 			$('#txtPan' + $(checkbox).data('id-pan')).val(1);			
 		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
 	} else {
-		if('{{ edit }}' != 'S') {
+		if($('#isEdit').val() != 'S') {
 			$('#txtPan' + $(checkbox).data('id-pan')).val(0);
 		}		
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
@@ -101,14 +101,16 @@ app.eventChkClick = function(checkbox) {
 app.eventTxtChange = function() {
 	app.calcularTotalPedido();
 
-	if (app.oDetalle.total != 0) {
-		$('#txtNombre').prop('disabled', false);
-		$('#txtCorreo').prop('disabled', false);
-		$('#btnIngresar').prop('disabled', false);		
-	} else {
-		$('#txtNombre').prop('disabled', true);
-		$('#txtCorreo').prop('disabled', true);
-		$('#btnIngresar').prop('disabled', true);
+	if($('#isEdit').val() != 'S') {
+		if (app.oDetalle.total != 0) {
+			$('#txtNombre').prop('disabled', false);
+			$('#txtCorreo').prop('disabled', false);
+			$('#btnIngresar').prop('disabled', false);		
+		} else {
+			$('#txtNombre').prop('disabled', true);
+			$('#txtCorreo').prop('disabled', true);
+			$('#btnIngresar').prop('disabled', true);
+		}
 	}
 }
 
@@ -116,7 +118,7 @@ $(document).ready(function() {
 	app.obtenerInformacionApp();
 	app.listarTiposPan();
 
-	if('{{ edit }}' == 'S') {
+	if($('#isEdit').val() == 'S') {
 		$('#txtNombre').prop('disabled', true);
 		$('#txtCorreo').prop('disabled', true);
 		$('#btnIngresar').prop('disabled', false);
