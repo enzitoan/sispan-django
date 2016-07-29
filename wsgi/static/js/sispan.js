@@ -1,6 +1,6 @@
 var app = {};
 
-app.VERSION = '0.5.0';
+app.VERSION = '1.0';
 app.AUTOR = 'Enzo Ahumada Núñez';
 
 app.SISTEMA = {
@@ -49,7 +49,7 @@ app.limpiarPedido = function() {
 }
 
 app.calcularTotalPedido = function(){
-	this.oDetalle = {
+	app.oDetalle = {
 		'cantidad': 0,
 		'total': 0
 	};
@@ -59,35 +59,35 @@ app.calcularTotalPedido = function(){
 		if ($(this).val() != ''){
 			items = $(this).val(); 
 		}
-		this.aTotPanes[index] = parseInt(items);		
+		app.aTotPanes[index] = parseInt(items);		
 	});
 
 	var total = 0;
-	$.each(this.aTotPanes,function(index, val) {
+	$.each(app.aTotPanes,function(index, val) {
 		if (isNaN(val)) {
 			val = 0;
 		}
 	    total += val;
 	});
 
-	this.oDetalle.cantidad = total;
-	this.oDetalle.total = parseInt(total) * this.SISTEMA.valorPan;
+	app.oDetalle.cantidad = total;
+	app.oDetalle.total = parseInt(total) * this.SISTEMA.valorPan;
 
-	$('#lblCantidad').text(this.oDetalle.cantidad);
-	$('#lblTotal').text('$ ' + this.oDetalle.total);
+	$('#lblCantidad').text(app.oDetalle.cantidad);
+	$('#lblTotal').text('$ ' + app.oDetalle.total);
 
-	return oDetalle;
+	return app.oDetalle;
 }
 
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
-		if (this.oDetalle.total == 0) {
+		if (app.oDetalle.total == 0) {
 			$('#txtPan' + $(checkbox).data('id-pan')).val(1);
 		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
 
 	} else {
-		if (this.oDetalle.total == 0) {
+		if (app.oDetalle.total == 0) {
 			$('#txtPan' + $(checkbox).data('id-pan')).val(0);
 		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
@@ -98,7 +98,7 @@ app.eventChkClick = function(checkbox) {
 
 app.eventTxtChange = function() {
 
-	if (this.oDetalle.total != 0) {
+	if (app.oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
 		if ($('#txtNombre').val() != '' && $('#txtCorreo').val() != '') {
