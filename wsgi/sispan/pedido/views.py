@@ -38,7 +38,6 @@ def pedido_editar(request, id):
     if request.method == 'GET':
         form = DetalleForm(instance=pedido)
         edit = 'S'
-        log.info(form)
         log.info(edit)
     else:
         form = DetalleForm(request.POST, instance=pedido)

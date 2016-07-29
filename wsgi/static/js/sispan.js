@@ -96,6 +96,7 @@ app.eventChkClick = function(checkbox) {
 
 app.eventTxtChange = function() {
 	app.calcularTotalPedido();
+
 	if (app.oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
@@ -110,6 +111,13 @@ app.eventTxtChange = function() {
 $(document).ready(function() {
 	app.obtenerInformacionApp();
 	app.listarTiposPan();
+
+	if('{{ edit }}' == 'S') {
+		$('#txtNombre').prop('disabled', true);
+		$('#txtCorreo').prop('disabled', true);
+		$('#btnIngresar').prop('disabled', false);
+	}
+	
 	app.calcularTotalPedido();
 
 	$('.chk-pedido').click(function(event) {
