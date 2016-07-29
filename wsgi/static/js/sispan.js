@@ -81,18 +81,24 @@ app.calcularTotalPedido = function(){
 
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
-		$('#txtPan' + $(checkbox).data('id-pan')).val(1);
+		if (oDetalle.total == 0) {
+			$('#txtPan' + $(checkbox).data('id-pan')).val(1);
+		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
+
 	} else {
-		$('#txtPan' + $(checkbox).data('id-pan')).val(0);
+		if (oDetalle.total == 0) {
+			$('#txtPan' + $(checkbox).data('id-pan')).val(0);
+		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
+
 	}
 	this.eventTxtChange();
 }
 
 app.eventTxtChange = function() {
 
-	if (oPedido.total != 0) {
+	if (oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
 		if ($('#txtNombre').val() != '' && $('#txtCorreo').val() != '') {
