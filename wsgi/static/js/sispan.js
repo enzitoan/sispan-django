@@ -85,10 +85,14 @@ app.calcularTotalPedido = function(){
 
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
-		$('#txtPan' + $(checkbox).data('id-pan')).val(1);
+		if('{{ edit }}' != 'S') {
+			$('#txtPan' + $(checkbox).data('id-pan')).val(1);			
+		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
-	} else {		
-		$('#txtPan' + $(checkbox).data('id-pan')).val(0);
+	} else {
+		if('{{ edit }}' != 'S') {
+			$('#txtPan' + $(checkbox).data('id-pan')).val(0);
+		}		
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
 	}
 	this.eventTxtChange();
@@ -117,7 +121,7 @@ $(document).ready(function() {
 		$('#txtCorreo').prop('disabled', true);
 		$('#btnIngresar').prop('disabled', false);
 	}
-	
+
 	app.calcularTotalPedido();
 
 	$('.chk-pedido').click(function(event) {
