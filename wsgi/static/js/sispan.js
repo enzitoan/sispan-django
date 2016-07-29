@@ -76,22 +76,20 @@ app.calcularTotalPedido = function(){
 	$('#lblCantidad').text(app.oDetalle.cantidad);
 	$('#lblTotal').text('$ ' + app.oDetalle.total);
 
-	return app.oDetalle;
+	if (app.oDetalle.cantidad > 0) {
+		if ($('#txtNombre').val() != '' && $('#txtCorreo').val() != '') {
+			$('#btnIngresar').prop('disabled', false);
+		}
+	}
 }
 
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
-		if (app.oDetalle.total == 0) {
-			$('#txtPan' + $(checkbox).data('id-pan')).val(1);
-		}
+		$('#txtPan' + $(checkbox).data('id-pan')).val(1);
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
-
-	} else {
-		if (app.oDetalle.total == 0) {
-			$('#txtPan' + $(checkbox).data('id-pan')).val(0);
-		}
+	} else {		
+		$('#txtPan' + $(checkbox).data('id-pan')).val(0);
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
-
 	}
 	this.eventTxtChange();
 }
@@ -101,9 +99,7 @@ app.eventTxtChange = function() {
 	if (app.oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
-		if ($('#txtNombre').val() != '' && $('#txtCorreo').val() != '') {
-			$('#btnIngresar').prop('disabled', false);
-		}
+		$('#btnIngresar').prop('disabled', false);
 		
 	} else {
 		$('#txtNombre').prop('disabled', true);
