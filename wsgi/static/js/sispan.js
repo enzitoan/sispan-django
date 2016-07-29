@@ -49,45 +49,45 @@ app.limpiarPedido = function() {
 }
 
 app.calcularTotalPedido = function(){
-	app.oDetalle = {
+	this.oDetalle = {
 		'cantidad': 0,
 		'total': 0
 	};
 
 	$.each($('.txt-pedido'), function(index, val) {
-		cantidad = 0;
+		var items = 0;
 		if ($(this).val() != ''){
-			cantidad = $(this).val(); 
+			items = $(this).val(); 
 		}
-		aTotPanes[index] = parseInt(cantidad);		
+		this.aTotPanes[index] = parseInt(items);		
 	});
 
 	var total = 0;
-	$.each(aTotPanes,function(index, val) {
+	$.each(this.aTotPanes,function(index, val) {
 		if (isNaN(val)) {
 			val = 0;
 		}
 	    total += val;
 	});
 
-	oDetalle.cantidad = total;
-	oDetalle.total = parseInt(total) * this.SISTEMA.valorPan;
+	this.oDetalle.cantidad = total;
+	this.oDetalle.total = parseInt(total) * this.SISTEMA.valorPan;
 
-	$('#lblCantidad').text(oDetalle.cantidad);
-	$('#lblTotal').text('$ ' + oDetalle.total);
+	$('#lblCantidad').text(this.oDetalle.cantidad);
+	$('#lblTotal').text('$ ' + this.oDetalle.total);
 
 	return oDetalle;
 }
 
 app.eventChkClick = function(checkbox) {
 	if ($(checkbox).is(':checked')) {
-		if (oDetalle.total == 0) {
+		if (this.oDetalle.total == 0) {
 			$('#txtPan' + $(checkbox).data('id-pan')).val(1);
 		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', false);
 
 	} else {
-		if (oDetalle.total == 0) {
+		if (this.oDetalle.total == 0) {
 			$('#txtPan' + $(checkbox).data('id-pan')).val(0);
 		}
 		$('#txtPan' + $(checkbox).data('id-pan')).prop('disabled', true);
@@ -98,7 +98,7 @@ app.eventChkClick = function(checkbox) {
 
 app.eventTxtChange = function() {
 
-	if (oDetalle.total != 0) {
+	if (this.oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
 		if ($('#txtNombre').val() != '' && $('#txtCorreo').val() != '') {
