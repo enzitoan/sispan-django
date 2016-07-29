@@ -37,15 +37,13 @@ def pedido_editar(request, id):
     pedido = Detalle.objects.get(id=id)
     if request.method == 'GET':
         form = DetalleForm(instance=pedido)
+        edit = 'S'
     else:
         form = DetalleForm(request.POST, instance=pedido)
         if form.is_valid():
             form.save()
         return redirect('pedido:index')
-    context = {
-        'form':form,
-        'edit': 'S',
-    }
+    context = {'form':form, 'edit': edit }
     return render(request, 'pedido/formulario.html', )
 
 def pedido_eliminar(request, id):
