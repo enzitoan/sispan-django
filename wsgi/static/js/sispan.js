@@ -99,8 +99,7 @@ app.eventTxtChange = function() {
 	if (app.oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
-		$('#btnIngresar').prop('disabled', false);
-		
+		$('#btnIngresar').prop('disabled', false);		
 	} else {
 		$('#txtNombre').prop('disabled', true);
 		$('#txtCorreo').prop('disabled', true);
