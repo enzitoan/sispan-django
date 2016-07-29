@@ -97,7 +97,7 @@ app.eventChkClick = function(checkbox) {
 }
 
 app.eventTxtChange = function() {
-
+	app.calcularTotalPedido();
 	if (app.oDetalle.total != 0) {
 		$('#txtNombre').prop('disabled', false);
 		$('#txtCorreo').prop('disabled', false);
