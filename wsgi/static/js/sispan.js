@@ -115,6 +115,7 @@ app.eventTxtChange = function() {
 $(document).ready(function() {
 	app.obtenerInformacionApp();
 	app.listarTiposPan();
+	app.calcularTotalPedido();
 
 	$('.chk-pedido').click(function(event) {
 		app.eventChkClick($(this));
